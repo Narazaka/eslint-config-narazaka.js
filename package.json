@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-narazaka",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a strict eslint config",
   "keywords": [
     "eslintconfig"
