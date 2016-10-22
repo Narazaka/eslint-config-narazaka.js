@@ -1,0 +1,335 @@
+parserOptions:
+  ecmaVersion: 6
+  sourceType: module
+  ecmaFeatures:
+    impliedStrict: true
+env:
+  node: true
+  es6: true
+extends: eslint:recommended
+rules:
+  # -----------------------------------
+  # Possible Errors
+  # -----------------------------------
+  no-cond-assign: # if (a = 1)
+    - error
+    - except-parens
+  no-extra-parens: # (0)
+    - 2
+    - all
+    - conditionalAssign: false
+      returnAssign: false
+      nestedBinaryExpressions: false
+  no-prototype-builtins: 0 # disallow foo.hasOwnProperty() allow {}.prototype.hasOwnProperty(foo)
+  no-template-curly-in-string: 2 # "${a}" (not '`'')
+  no-unsafe-negation: 2 # !a in obj (needs ())
+  valid-jsdoc: 1
+  # -----------------------------------
+  # Best Practices
+  # -----------------------------------
+  accessor-pairs: 1 # error if has no get but set
+  array-callback-return: 2
+  block-scoped-var: 1 # if(){var a=1}
+  class-methods-use-this: 1 # method() {return 1}
+  complexity: 2
+  consistent-return: 2 # {if (a) {return true} else return} // type mismatch > bool or undef
+  curly: # if (a) return;
+    - 2
+    - multi-line
+  default-case: 0 # switch force default
+  dot-location: # multiline .a() not obj.
+    - 2
+    - property
+  dot-notation: 2 # no foo["bar"] but foo.bar
+  eqeqeq: # no ==
+    - 2
+    - always
+    - null: ignore # allow null == a
+  guard-for-in: 2 # for in with hasOwnProperty
+  no-alert: 2
+  no-caller: 2
+  no-div-regex: 2 # 4/2 like regex 
+  no-else-return: 0 # error: if(a){return 1}else{return 2}
+  no-empty-function: 2
+  no-eq-null: 0 # null !== a
+  no-eval: 2
+  no-extend-native: 2 # Array.prototype.a = ...
+  no-extra-bind: 2 # bind to not this func
+  no-extra-label: 2
+  no-floating-decimal: 2 # .1
+  no-global-assign: 2 # window = {}
+  no-implicit-coercion: 2 # !!a / "" + a
+  no-implicit-globals: 2 # top level var or function
+  no-implied-eval: 2 # setTimeout("a=1", 0)
+  no-invalid-this: 2 # top level this.a = 1 or some
+  no-iterator: 2 # foo.__iterator__ = ...
+  no-labels: 2
+  no-lone-blocks: 2 # disallow no need block
+  no-loop-func: 2 # for{a[i] = function{i}}
+  no-magic-numbers:
+    - 2
+    - enforceConst: true
+      detectObjects: true
+  no-multi-spaces:
+    - 2
+    - exceptions:
+        Property: true
+        VariableDeclarator: true
+        ImportDeclaration: true
+  no-multi-str: 2 # "aaa \(\n)aaa""
+  no-new-func: 2 # new Function()
+  no-new-wrappers: 2 # new Number(1)
+  no-new: 2 # ^new Foo();$
+  no-octal-escape: 2 # "\123"
+  no-octal: 2 # a = 012
+  no-param-reassign: # (a) => a = 1
+    - 2
+    - props: true
+  no-proto: 2 # __proto__
+  no-restricted-properties: 0 # specify disallow props
+  no-return-assign:
+    - 2
+    - except-parens
+  no-script-url: 2 # location.href = "javascript:void(0)"
+  no-self-compare: 2
+  no-sequences: 2 # a = (1, 2)
+  no-throw-literal: 2 # throw ""
+  no-unmodified-loop-condition: 2
+  no-unused-expressions:
+    - 2
+    - allowShortCircuit: true # a || b()
+      allowTernary: true # a ? b :c()
+  no-useless-call: 2 # a.call(null)
+  no-useless-concat: 2 # "" + ""
+  no-useless-escape: 2 # "a\!"
+  no-void: 2 # void 0
+  no-warning-comments: 2 # TODO FIXME comments
+  no-with: 2
+  radix: 2 # parseInt("071") is danger; use parseInt("071", 10)
+  vars-on-top: 0 # declare var as C style
+  yoda: # ! eslint:recommended
+    - 2
+    - never
+    - exceptRange: true
+  # -----------------------------------
+  # Strict Mode
+  # -----------------------------------
+  strict: 2
+  # -----------------------------------
+  # Variables
+  # -----------------------------------
+  init-declarations: # declare with value
+    - 2
+    - always
+  no-catch-shadow: 2 # err = 1; catch (err)
+  no-label-var: 2
+  no-restricted-globals: 0 # specify unuse glbals
+  no-shadow-restricted-names: 2 # undefined = 1
+  no-shadow:
+    - 2
+    - builtinGlobals: true
+  no-undef-init: 2
+  no-undefined: 0 # no use undefined because danger
+  no-use-before-define: 2
+  # -----------------------------------
+  # Node.js and CommonJS
+  # -----------------------------------
+  callback-return: 2 # force return callback()
+  global-require: 2 # force top level require()
+  handle-callback-err:
+    - 2
+    - error # not err
+  no-mixed-requires: 0
+  no-new-require: 2 # new require("foo")
+  no-path-concat: 2 # __dirname + "/a"
+  no-process-env: 2 # process.env.FOO
+  no-process-exit: 2
+  no-restricted-modules: 0 # specify disallow modules
+  no-sync: 0 # never use *Sync methods
+  # -----------------------------------
+  # Stylistic Issues
+  # -----------------------------------
+  array-bracket-spacing: 2 # [1]
+  block-spacing: # { a }
+    - 2
+    - always
+  brace-style: # } else {
+    - 2
+    - 1tbs
+    - allowSingleLine: true
+  camelcase: 2
+  comma-dangle: # [a, b]
+    - 2
+    - always-multiline
+  comma-spacing: 2 # a, b
+  comma-style: 2 # a,
+  computed-property-spacing: 2 # a[1]
+  consistent-this: 0 # that = this
+  eol-last: 2
+  func-call-spacing: 2 # func(1)
+  func-name-matching: # bar = function foo(){}
+    - 2
+    - includeCommonJSModuleExports: true
+  func-names: 2 # A.prototype.foo = function foo(){}
+  func-style: # var a = function() {}
+    - 2
+    - declaration
+    - allowArrowFunctions: true
+  id-blacklist: 0 # specify NG names
+  id-length: 0 # symbol name length
+  id-match: 0 # specify names
+  indent:
+    - 2
+    - 2
+    - SwitchCase: 1
+      VariableDeclarator:
+        var: 2
+        let: 2
+        const: 3
+      MemberExpression: 1
+      FunctionDeclaration:
+        parameters: 1
+        body: 1
+      FunctionExpression:
+        parameters: 1
+        body: 1
+  jsx-quotes: 2 # <a b="c" />
+  key-spacing: # key: value
+    - 2
+    - mode: minimum
+      align: value
+  keyword-spacing: 2 # if () {}
+  line-comment-position: 0
+  linebreak-style: 2 # LF
+  lines-around-comment:
+    - 2
+    - beforeBlockComment: true
+      afterBlockComment: false
+      afterLineComment: false
+      allowBlockStart: true
+      allowBlockEnd: true
+      allowObjectStart: true
+      allowObjectEnd: true
+      allowArrayStart: true
+      allowArrayEnd: true
+  lines-around-directive: 2 # space around "use strict;"
+  max-depth: 2
+  max-len:
+    - 2
+    - 120
+  max-lines: # one file
+    - 2
+    - 500
+  max-nested-callbacks:
+    - 2
+    - 3
+  max-params: # (a,b,c,d,e) =>
+    - 2
+    - 5
+  max-statements-per-line: 2 # default: 1 per line
+  max-statements: 2
+  multiline-ternary: 0 # a ? 1 : 0
+  new-cap: 2 # a = Promise() NG
+  new-parens: 2 # NG new A;
+  newline-after-var: 0
+  newline-before-return: 0
+  newline-per-chained-call: # a.b().c() ok, a.b().c().d() ng
+    - 2
+    - ignoreChainWithDepth: 3
+  no-array-constructor: 2
+  no-bitwise: 0 # a | b
+  no-continue: 0
+  no-inline-comments: 0
+  no-lonely-if: 2 # else {if()}
+  no-mixed-operators: 2 # a && b || c
+  no-multiple-empty-lines:
+    - 2
+    - max: 2
+      maxEOF: 0
+      maxBOF: 0
+  no-negated-condition: 2 # if(!a) else
+  no-nested-ternary: 2 # nested a ? 1 : 0
+  no-new-object: 2 # new Object()
+  no-plusplus: 0
+  no-restricted-syntax: 0 # no-with etc.
+  no-tabs: 2
+  no-ternary: 0 # a ? 1 : 0
+  no-trailing-spaces: 2 # no \s+$
+  no-underscore-dangle: 0 # _foo
+  no-unneeded-ternary: 2 # a ? true : false
+  no-whitespace-before-property: 2 # a .b()
+  object-curly-newline: 2 # no {a,$
+  object-curly-spacing: 2 # {a: 1}
+  object-property-newline: 0
+  one-var-declaration-per-line: 2 # no var a, b;
+  one-var: # var a; var b;
+    - 2
+    - never
+  operator-assignment: 2 # force +=
+  operator-linebreak: 2 # a +$
+  padded-blocks: # NG if{\n\na()
+    - 2
+    - never
+  quote-props: # NG {"a": 1}
+    - 2
+    - as-needed
+  quotes: # ""
+    - 2
+    - double
+    - avoidEscape: true
+  require-jsdoc: 2
+  semi-spacing: 2 # a; b
+  semi:
+    - 2
+    - always
+    - omitLastInOneLineBlock: true
+  sort-keys: 0
+  sort-vars: 0
+  space-before-blocks: 2 # () {}
+  space-before-function-paren: # a() {}
+    - 2
+    - anonymous: never
+      named: never
+      asyncArrow: always
+  space-in-parens: 2 # (a)
+  space-infix-ops: 2 # 1 + 1
+  space-unary-ops: 2 # typeof a / a++
+  spaced-comment: # // a
+    - 2
+    - always
+    - markers:
+        - "*"
+        - "/"
+        - "!"
+        - "!<"
+  unicode-bom: 2 # NG BOM
+  wrap-regex: 0 # (/a/)
+  # -----------------------------------
+  # ECMAScript 6
+  # -----------------------------------
+  arrow-body-style:
+    - 2
+    - as-needed
+  arrow-parens: 2 # (a) =>
+  arrow-spacing: 2 # ) => {
+  generator-star-spacing: 2 # function *a()
+  no-confusing-arrow: 0 # (a) => b ? 1 : 0
+  no-duplicate-imports: 2
+  no-restricted-imports: 0 # specify NG import
+  no-useless-computed-key: 2
+  no-useless-constructor: 2
+  no-useless-rename: 2 # import { foo as foo } 
+  no-var: 2 # const / let
+  object-shorthand: 2 # {a, b}
+  prefer-arrow-callback: 2 # a(function() {return 1;}) -> a(() => 1)
+  prefer-const: 2
+  prefer-numeric-literals: 2 # NG parseInt("1", 8)
+  prefer-reflect: 0 # use not Object but Reflect methods
+  prefer-rest-params: 2 # no arguments
+  prefer-spread: 2 # no apply
+  prefer-template: 2
+  rest-spread-spacing: 2 # ...a
+  sort-imports: 0
+  symbol-description: 2 # no Symbol() but Symbol("a")
+  template-curly-spacing: 2 # `${a}`
+  yield-star-spacing: 2 # yield* foo()
